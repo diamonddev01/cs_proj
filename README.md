@@ -11,4 +11,5 @@ All the code written in school or at home for CS :)
 [[SCHOOL] | CSV_FILES](./CompletedInSchool/CSV_Files) | Completed: 19/10/2022 & 21/10/2022
 [[SCHOOL] | Discounter](./CompletedInSchool/Discounter/code.py) | Completed: 21/10/2022
 [[SCHOOL] | Maths minigame](./CompletedInSchool/AMathsMinigame/code.py) | Completed: 21/10/2022
+[[SCHOOL] | NumericArrays](./CompletedInSchool/2D_Numerical_Arrays) | Completed: 21/10/2022
 [[SCHOOL] | Starter_02_11_2022](./CompletedInSchool/Starter_02_11_2022/code.py) | Completed: 02/11/2022
