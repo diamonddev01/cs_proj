@@ -1,2 +1,4 @@
-# cs_proj
-All my projects for CS
+# CS Work
+All the code written in school or at home for CS :)
+
+# Projects
