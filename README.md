@@ -13,3 +13,5 @@ All the code written in school or at home for CS :)
 - [[SCHOOL] | Maths minigame](./CompletedInSchool/AMathsMinigame/code.py) | Completed: 21/10/2022
 - [[SCHOOL] | NumericArrays](./CompletedInSchool/2D_Numerical_Arrays) | Completed: 21/10/2022
 - [[SCHOOL] | Starter_02_11_2022](./CompletedInSchool/Starter_02_11_2022/code.py) | Completed: 02/11/2022
+- [[SCHOOL] | Starter_11_11_2022](./CompletedInSchool/StarterTask/PythonBasics_001.py) | Completed: 11/11/2022
+- [[SCHOOL] | Starter_11_11_2022](./CompletedInSchool/StarterTask/PythonIfStatements_012.py) | Completed: 11/11/2022
