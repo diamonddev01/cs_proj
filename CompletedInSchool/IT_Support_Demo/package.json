@@ -1,0 +1,17 @@
+{
+  "name": "csproj_itsd",
+  "version": "1.0.0",
+  "description": "An IT support demo made for my CS class",
+  "main": "build/index.js",
+  "scripts": {
+    "dev": "cd build && node index.js"
+  },
+  "author": "DiamondDev01",
+  "license": "ISC",
+  "dependencies": {
+    "readline": "^1.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9"
+  }
+}
