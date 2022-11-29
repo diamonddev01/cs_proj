@@ -26,7 +26,7 @@ export function getDevice(): Promise<Device | null> {
                     model: deviceModel,
                     maker: deviceMaker,
                     OSVer: osVersion,
-                    type: 'PHONE'
+                    type: DeviceTypes.PHONE
                 }
 
                 return resolve(phone);
@@ -36,7 +36,7 @@ export function getDevice(): Promise<Device | null> {
                 model: deviceModel,
                 maker: deviceMaker,
                 OSVer: 'UNKNOWN',
-                type: 'PHONE'
+                type: DeviceTypes.PHONE
             }
             return resolve(phone);
         }
@@ -58,7 +58,7 @@ export function getDevice(): Promise<Device | null> {
                     model: deviceModel,
                     maker: deviceMaker,
                     OSVer: osVersion,
-                    type: 'LAPTOP'
+                    type: DeviceTypes.LAPTOP
                 }
 
                 return resolve(laptop);
@@ -68,7 +68,7 @@ export function getDevice(): Promise<Device | null> {
                 model: deviceModel,
                 maker: deviceMaker,
                 OSVer: 'UNKNOWN',
-                type: 'LAPTOP'
+                type: DeviceTypes.LAPTOP
             }
 
             return resolve(laptop);
@@ -85,11 +85,16 @@ interface D {
 }
 
 export interface Phone extends D {
-    type: 'PHONE';
+    type: DeviceTypes.PHONE;
 }
 
 export interface Laptop extends D {
-    type: 'LAPTOP';
+    type: DeviceTypes.LAPTOP;
+}
+
+export enum DeviceTypes {
+    PHONE = 1,
+    LAPTOP = 2
 }
 
 export type Device = Phone | Laptop;

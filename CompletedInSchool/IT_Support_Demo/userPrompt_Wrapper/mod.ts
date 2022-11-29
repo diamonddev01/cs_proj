@@ -6,7 +6,7 @@ const rl = readLine.createInterface({
     output: process.stdout
 });
 
-export async function ask<T>(question: string, def?: any): Promise<T | string | null> {
+export async function ask<T>(question: string, def?: any): Promise<T | null> {
     return new Promise((resolve) => {
         rl.question(question + ' ', (d: string) => {
             const data = d ??= def ??= null;
