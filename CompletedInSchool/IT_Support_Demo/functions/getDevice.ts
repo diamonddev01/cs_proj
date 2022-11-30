@@ -2,7 +2,7 @@ import { ask } from "../userPrompt_Wrapper/mod";
 
 export function getDevice(): Promise<Device | null> {
     return new Promise(async (resolve, reject) => {
-        const deviceType = await ask<String>('What device type are you having issues on (Phone, Laptop)');
+        const deviceType = await ask<string>('What device type are you having issues on (Phone, Laptop)').catch(reject);
         if(!deviceType) {
             reject('A device type is required.');
             return;

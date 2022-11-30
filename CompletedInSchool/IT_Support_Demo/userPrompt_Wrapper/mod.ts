@@ -8,7 +8,7 @@ const rl = readLine.createInterface({
 
 export async function ask<T>(question: string, def?: any): Promise<T | null> {
     return new Promise((resolve) => {
-        rl.question(question + ' ', (d: string) => {
+        rl.question(question + ' ', (d: NonNullable<any> | null) => {
             const data = d ??= def ??= null;
             resolve(data as T);
         });

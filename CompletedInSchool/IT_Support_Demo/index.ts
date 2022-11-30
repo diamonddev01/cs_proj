@@ -13,14 +13,20 @@ async function run() {
         throw new Error("NO DEVICE SPECIFIED");
     }
 
-    const isWet = await ask<string>("Is the phone wet? (no)", "no").catch(e => {
+    const isWet = await ask<string>("Is the device wet? (no)", "no").catch(e => {
         throw new Error(e);
     });
 
     if(isWet && (isWet.toLowerCase() == "true" || isWet.toLowerCase() == "yes")) {
-        console.log(DEVICE_IS_WET);
-        process.exit(0);
+        solve(DEVICE_IS_WET);
     }
+
+
+}
+
+function solve(solution: string): void {
+    console.log(`\n\n> I found a solution\n${solution}`);
+    process.exit(0);
 }
 
 run();

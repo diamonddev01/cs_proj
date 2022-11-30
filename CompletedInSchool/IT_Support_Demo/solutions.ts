@@ -1,1 +1,1 @@
-export const DEVICE_IS_WET = "Place the device in water";
+export const DEVICE_IS_WET = "Place the device in rice";
