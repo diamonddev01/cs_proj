@@ -1,0 +1,11 @@
+{
+  "name": "trafficlightsystem",
+  "version": "1.0.0",
+  "description": "A demo for traffic light operation",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "tsc && cd build && node index.js"
+  },
+  "author": "DiamondDev01",
+  "license": "ISC"
+}
