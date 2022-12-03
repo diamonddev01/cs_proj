@@ -1,20 +1,28 @@
-type lightState = "Red" | "RedYellow" | "Green" | "Yellow";
+type lightState = "Red" | "RedYellow" | "Green" | "Yellow"; // All states a light is allowed to be in
 
 class Light {
-    private saveState: lightState;
-    public group: number;
+    private saveState: lightState; // The lights current state
+    private group: number;
 
+    /*
+        saveState - The state the light will be assigned on construction
+        groupNumber - The group that this light is tied to
+    */
     constructor(saveState: lightState, groupNumber: number) {
-        this.saveState = saveState;
-        this.group = groupNumber;
+        this.saveState = saveState; // Allocates the saveState
+        this.group = groupNumber; // Allocates the group.
     }
 
-    get state(): lightState {
-        return this.saveState;
+    public get state(): lightState {
+        return this.saveState; // Returns the light state to be used in a different calculation
     }
 
-    set state(state: lightState) {
-        this.saveState = state;
+    public set state(state: lightState) {
+        this.saveState = state; // Sets the light state from another claculation or by the manager.
+    }
+
+    public get groupNumber(): number {
+        return this.group; // Used to make a public version of the private this.group prop.
     }
 }
 
@@ -26,19 +34,21 @@ interface Group {
     light_count: number;
     green_time: number; // seconds
     yellow_time: number; // seconds
-    red_yellow_time: number;
+    red_yellow_time: number; // seconds
 }
 
+// Operates the lights
 class Manager {
     private lights: Manager2DArray;
     private groups: Group[];
     private litGroupIndex: number;
 
-    constructor(groups: Group[]) {
-        this.groups = groups;
-        this.lights = [];
-        this.litGroupIndex = 0;
+    constructor(groups: Group[]) { // Inits with an array of group items
+        this.groups = groups; // sets the group items into this.groups
+        this.lights = []; // Creates an array and allocates it so that lights can be placed in it later.
+        this.litGroupIndex = 0; // Sets the index to be the first item of the arrays
 
+        // Initialises all of the required lights
         for(let i = 0; i < this.groups.length; i++) {
             const group = groups[i];
             const lights: Light[] = [];
@@ -49,17 +59,22 @@ class Manager {
             this.lights.push(lights);
         }
 
+        // Makes one change to the light system so the first lights change state
         this.tick(this);
     }
 
+    // Logging purposes and also used in other calculations
     public get states() {
         return this.lights;
     }
 
+    // Made so that the states() is a GET,SET
     private set states(lights: Manager2DArray) {
         this.lights = lights;
     }
     
+    // Moves the lights by one item over in the index of states
+    // This uses "self" as the Manager because of setTimeout being odd
     private tick(self: Manager) {
         const groupdId = self.litGroupIndex;
         const light_0 = self.lights[groupdId][0].state;
@@ -92,18 +107,27 @@ class Manager {
         }
     }
 
+    // Changes the state of every light inside of the group
+    /*
+        group_id - The index that will be used
+        state: the state to change them to
+    */
     private changeGroupState(group_id: number, state: lightState) {
-        if(group_id > this.groups.length - 1) return;
+        if(group_id > this.groups.length - 1) return; // If it is an invalid index then return out;
+
+        // sets the state of every light
         for (const light of this.lights[group_id]) {
             light.state = state;
         }
     }
 
+    // Returns the current indexState for logging purposes
     public get getIndexState(): number {
         return this.litGroupIndex;
     }
 }
 
+// DEMO CODE
 const m = new Manager([{
     light_count: 3,
     green_time: 3,
