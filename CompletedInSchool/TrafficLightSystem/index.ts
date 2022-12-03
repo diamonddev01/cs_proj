@@ -26,6 +26,7 @@ interface Group {
     light_count: number;
     green_time: number; // seconds
     yellow_time: number; // seconds
+    red_yellow_time: number;
 }
 
 class Manager {
@@ -60,33 +61,33 @@ class Manager {
     }
     
     private tick(self: Manager) {
-        const groupdId = this.litGroupIndex;
-        const light_0 = this.lights[groupdId][0].state;
+        const groupdId = self.litGroupIndex;
+        const light_0 = self.lights[groupdId][0].state;
 
         switch(light_0) {
             case "Red":
-                this.changeGroupState(groupdId, "RedYellow");
-                setTimeout((tickfn: typeof this.tick, self: Manager) => {
+                self.changeGroupState(groupdId, "RedYellow");
+                setTimeout((tickfn: typeof self.tick, self: Manager) => {
                     tickfn(self)
-                }, this.groups[groupdId].yellow_time * 1000, self.tick, self);
+                }, self.groups[groupdId].red_yellow_time * 1000, self.tick, self);
                 break;
             case "RedYellow":
-                this.changeGroupState(groupdId, "Green");
-                setTimeout((tickfn: typeof this.tick, self: Manager) => {
+                self.changeGroupState(groupdId, "Green");
+                setTimeout((tickfn: typeof self.tick, self: Manager) => {
                     tickfn(self)
-                }, this.groups[groupdId].green_time * 1000, self.tick, self);
+                }, self.groups[groupdId].green_time * 1000, self.tick, self);
                 break;
             case "Green":
-                this.changeGroupState(groupdId, "Yellow");
-                setTimeout((tickfn: typeof this.tick) => {
-                    tickfn()
-                }, this.groups[groupdId].yellow_time * 1000, this.tick);
+                self.changeGroupState(groupdId, "Yellow");
+                setTimeout((tickfn: typeof self.tick, self: Manager) => {
+                    tickfn(self)
+                }, self.groups[groupdId].yellow_time * 1000, self.tick, self);
                 break;
             case "Yellow":
-                this.changeGroupState(groupdId, "Red");
-                this.litGroupIndex++;
-                if(this.litGroupIndex >= this.groups.length) this.litGroupIndex = 0;
-                this.tick();
+                self.changeGroupState(groupdId, "Red");
+                self.litGroupIndex++;
+                if(self.litGroupIndex >= self.groups.length) self.litGroupIndex = 0;
+                self.tick(self);
                 break;
         }
     }
@@ -106,16 +107,23 @@ class Manager {
 const m = new Manager([{
     light_count: 3,
     green_time: 3,
-    yellow_time: 1
+    yellow_time: 1,
+    red_yellow_time: 1
 },
 {
     light_count: 3,
     green_time: 3,
-    yellow_time: 1
+    yellow_time: 1,
+    red_yellow_time: 1
+},
+{
+    light_count: 6,
+    green_time: 7,
+    yellow_time: 2,
+    red_yellow_time: 1
 }
 ]);
 
 setInterval(() => {
     console.log(m.states);
-    console.log(m.getIndexState)
-}, 500);
+}, 250);
